@@ -5,6 +5,7 @@ import { Avatar } from "./components/Avatar";
 import { Score } from "./components/Score";
 import { ScoreWrapper } from "./components/ScoreWrapper";
 import { DetailOnTheAboveScore } from "./components/DetailOnTheAboveScore";
+import { FileUploaded } from "./components/FileUploaded";
 
 const data: any = {
   emailAddress: "daniil.zahliadov@gmail.com",
@@ -191,6 +192,7 @@ function App() {
               message={data?.OverallSatisfactionMoreDetail}
             />
           )}
+          <FileUploaded />
         </div>
       </div>
     </div>

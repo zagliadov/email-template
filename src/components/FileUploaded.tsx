@@ -1,8 +1,6 @@
-interface IProps {
-  title: string;
-  message: string;
-}
-export function DetailOnTheAboveScore({ title, message }: IProps) {
+import { FileLists } from "./FileLists";
+
+export function FileUploaded() {
   return (
     <div
       style={{
@@ -21,18 +19,14 @@ export function DetailOnTheAboveScore({ title, message }: IProps) {
     >
       <div
         style={{
-          color: "#202020",
-          paddingBottom: "8px",
+          fontWeight: "400",
+          fontSize: "14px",
+          lineHeight: "20px",
+          color: "#454A54",
         }}
       >
-        {title}
-      </div>
-      <div
-        style={{
-          color: "#808080",
-        }}
-      >
-        {message}
+        Files Uploaded
+        <FileLists />
       </div>
     </div>
   );

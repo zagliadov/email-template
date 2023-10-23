@@ -1,8 +1,9 @@
+
 interface IProps {
   title: string;
   message: string;
 }
-export function DetailOnTheAboveScore({ title, message }: IProps) {
+export function SystemsFullyOperational({ title, message}: IProps) {
   return (
     <div
       style={{
@@ -16,24 +17,10 @@ export function DetailOnTheAboveScore({ title, message }: IProps) {
         fontSize: "14px",
         fontWeight: "400",
         lineHeight: "20px",
-        borderRadius: "8px",
+        borderRadius: "8px"
       }}
     >
-      <div
-        style={{
-          color: "#202020",
-          paddingBottom: "8px",
-        }}
-      >
-        {title}
-      </div>
-      <div
-        style={{
-          color: "#808080",
-        }}
-      >
-        {message}
-      </div>
+
     </div>
-  );
+  )
 }
