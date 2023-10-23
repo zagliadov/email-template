@@ -1,12 +1,6 @@
-interface IProps {
-  title: string;
-  scoreName: string;
-  scoreNumber: number;
-  lowScore: string;
-}
-export function Score({ title, scoreName, scoreNumber, lowScore }: IProps) {
-  const bgColor = (scoreNumber: number) => {
-    switch (scoreNumber) {
+function Line({ scoreNumber }: { scoreNumber: number }) {
+  const bgColor = (score: number) => {
+    switch (score) {
       case 1:
         return "#DF715F";
       case 2:
@@ -19,65 +13,91 @@ export function Score({ title, scoreName, scoreNumber, lowScore }: IProps) {
       default:
         return "#F8CC46";
     }
-  }
+  };
+
   return (
     <div
       style={{
-        marginTop: "12px",
-        fontFamily: "Arial",
+        marginLeft: "10px",
+        width: `${70 * scoreNumber}px`,
+        height: "4px",
+        borderRadius: "24px",
+        backgroundColor: bgColor(scoreNumber),
       }}
-    >
+    ></div>
+  );
+}
+
+interface IProps {
+  scoreName: string;
+  scoreNumber: number;
+  message?: string | undefined | null;
+}
+export function Score({ scoreName, scoreNumber, message }: IProps) {
+  return (
+    <div style={{ marginBottom: "4px" }}>
       <div
         style={{
-          fontSize: "16px",
-          fontWeight: "700",
-          lineHeight: "18px",
-          letterSpacing: "-0.04em",
-          textAlign: "center",
-          color: "#454A54",
-        }}
-      >
-        {title}
-      </div>
-      <div
-        style={{
-          marginTop: "12px",
           backgroundColor: "#F6FAFD",
-          paddingTop: "7px",
           paddingBottom: "7px",
           paddingLeft: "16px",
+          textAlign: "left",
         }}
       >
-        <span style={{
-          fontWeight: "400",
-          fontSize: "14px",
-          lineHeight: "20px",
-          color: "#454A54",
-        }}>{scoreName}</span>
-        <div style={{
-          display: "flex",
-          justifyContent: "start",
-          alignItems: "center",
-          paddingTop: "8px",
-          paddingRight: "16px",
-        }}>
-          <span style={{
+        <span
+          style={{
             fontWeight: "400",
             fontSize: "14px",
-            
-          }}>{scoreNumber}</span>
-          <div style={{
-            marginLeft: "10px",
-            width: `${70 * scoreNumber}px`,
-            height: "4px",
-            borderRadius: "24px",
-            backgroundColor: bgColor(scoreNumber),
-          }}></div>
-          <div>
-            <span>
-              {}
+            lineHeight: "20px",
+            color: "#454A54",
+          }}
+        >
+          {scoreName}
+        </span>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "start",
+            flexDirection: "column",
+            paddingTop: "8px",
+            paddingRight: "16px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "start",
+              alignItems: "center",
+            }}
+          >
+            <span
+              style={{
+                fontWeight: "400",
+                fontSize: "14px",
+              }}
+            >
+              {scoreNumber}
             </span>
+            <Line scoreNumber={scoreNumber} />
           </div>
+          {message && (
+            <div
+              style={{
+                paddingTop: "4px",
+              }}
+            >
+              <span
+                style={{
+                  fontWeight: "400",
+                  fontSize: "14px",
+                  lineHeight: "20px",
+                  color: "#808080",
+                }}
+              >
+                {message}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>

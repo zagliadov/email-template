@@ -3,21 +3,35 @@ import { InfoBlock } from "./components/InfoBlock";
 import { Header } from "./components/Header";
 import { Avatar } from "./components/Avatar";
 import { Score } from "./components/Score";
+import { ScoreWrapper } from "./components/ScoreWrapper";
 
-const data = {
+const data: any = {
   emailAddress: "daniil.zahliadov@gmail.com",
   SendMeACopyOfMyResponses: true,
   SystemsOperational: "Y",
-  OverallSatisfactionMoreDetail: "",
+  OverallSatisfactionMoreDetail: "OverallSatisfactionMoreDetail",
   OverallSatisfactionScore: 3,
-  TechTeamResolutionScore: 3,
+  TechTeamResolutionScore: 2,
+  // TechTeamResolutionHigherScore: "TechTeamResolutionHigherScore",
+  TechTeamResolutionLowScore: "TechTeamResolutionLowScore",
   TechTeamSatisfactionScore: 3,
-  PMResolutionScore: 3,
-  PMDeliveryScore: 3,
-  PMObjectivesScore: 3,
-  PMSatisfactionScore: 3,
-  SatisfactionLowScore:
-    "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+  // TechTeamSatisfactionLowScore: "TechTeamSatisfactionLowScore",
+  // TechTeamSatisfactionHigherScore: "TechTeamSatisfactionHigherScore",
+  PMResolutionScore: 1,
+  // ResolutionLowScore: "ResolutionLowScore",
+  // ResolutionHigherScore: "ResolutionHigherScore",
+  PMDeliveryScore: 4,
+  DeliveryHigherScore: "DeliveryHigherScore",
+  // DeliveryLowScore:
+  //   "Please accept our gratitude for taking the time to complete this survey. Your feedback and insights are incredibly",
+  PMObjectivesScore: 2,
+  PMSatisfactionScore: 5,
+  ObjectivesLowScore:
+    "On a scale of 1-5 were the IT project goals and objectives clearly defined and communicated to all stakeholders involved in the pre-opening phase of your hotel?",
+  // SatisfactionLowScore:
+  //   "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+  SatisfactionHigherScore:
+    "Your feedback and insights are incredibly valuable to us, and we appreciate your willingness to share your thoughts.",
   OpeningDate: new Date("2023-10-24T00:00:00.000Z"),
   MARSHACode: "DDE34",
   Email: "daniil.zahliadov@gmail.com",
@@ -119,12 +133,51 @@ function App() {
             title="Opening Date"
             value={formatDate(data.OpeningDate)}
           />
-          <Score
-            title={"IT Openings Project Director"}
-            scoreName={"PM Satisfaction Score"}
-            scoreNumber={data.PMSatisfactionScore}
-            lowScore={data.SatisfactionLowScore}
-          />
+          <ScoreWrapper title={"IT Openings Project Director"}>
+            <Score
+              scoreName={"PM Satisfaction Score"}
+              scoreNumber={data.PMSatisfactionScore}
+              message={
+                data.SatisfactionLowScore || data.SatisfactionHigherScore
+              }
+            />
+            <Score
+              scoreName={"PM Objectives Score"}
+              scoreNumber={data.PMObjectivesScore}
+              message={data.ObjectivesLowScore || data.ObjectivesHigherScore}
+            />
+            <Score
+              scoreName={"PM Delivery Score"}
+              scoreNumber={data.PMDeliveryScore}
+              message={data.DeliveryLowScore || data.DeliveryHigherScore}
+            />
+            <Score
+              scoreName={"PM Resolution Score"}
+              scoreNumber={data.PMResolutionScore}
+              message={data.ResolutionLowScore || data.ResolutionHigherScore}
+            />
+          </ScoreWrapper>
+          {/* IT Opening Technical Team */}
+          <ScoreWrapper title={"IT Opening Technical Team"}>
+            <Score
+              scoreName={"Tech team Satisfaction Score"}
+              scoreNumber={data.TechTeamSatisfactionScore}
+              message={data.TechTeamSatisfactionLowScore || data.TechTeamSatisfactionHigherScore}
+            />
+            <Score
+              scoreName={"Tech team Resolution Score"}
+              scoreNumber={data.TechTeamResolutionScore}
+              message={data.TechTeamResolutionLowScore || data.TechTeamResolutionHigherScore}
+            />
+          </ScoreWrapper>
+          {/* IT Project Management */}
+          <ScoreWrapper title={"IT Project Management"}>
+            <Score
+              scoreName={"Overall Satisfaction"}
+              scoreNumber={data.OverallSatisfactionScore}
+              message={data.OverallSatisfactionMoreDetail}
+            />
+          </ScoreWrapper>
         </div>
       </div>
     </div>
