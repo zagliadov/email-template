@@ -4,6 +4,7 @@ import { Header } from "./components/Header";
 import { Avatar } from "./components/Avatar";
 import { Score } from "./components/Score";
 import { ScoreWrapper } from "./components/ScoreWrapper";
+import { DetailOnTheAboveScore } from "./components/DetailOnTheAboveScore";
 
 const data: any = {
   emailAddress: "daniil.zahliadov@gmail.com",
@@ -162,12 +163,18 @@ function App() {
             <Score
               scoreName={"Tech team Satisfaction Score"}
               scoreNumber={data.TechTeamSatisfactionScore}
-              message={data.TechTeamSatisfactionLowScore || data.TechTeamSatisfactionHigherScore}
+              message={
+                data.TechTeamSatisfactionLowScore ||
+                data.TechTeamSatisfactionHigherScore
+              }
             />
             <Score
               scoreName={"Tech team Resolution Score"}
               scoreNumber={data.TechTeamResolutionScore}
-              message={data.TechTeamResolutionLowScore || data.TechTeamResolutionHigherScore}
+              message={
+                data.TechTeamResolutionLowScore ||
+                data.TechTeamResolutionHigherScore
+              }
             />
           </ScoreWrapper>
           {/* IT Project Management */}
@@ -178,6 +185,12 @@ function App() {
               message={data.OverallSatisfactionMoreDetail}
             />
           </ScoreWrapper>
+          {data?.OverallSatisfactionMoreDetail && (
+            <DetailOnTheAboveScore
+              title={"Detail on the above score"}
+              message={data?.OverallSatisfactionMoreDetail}
+            />
+          )}
         </div>
       </div>
     </div>
